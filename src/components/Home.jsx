@@ -44,6 +44,7 @@ import logo from "../assets/logo.png";
 
 // /* -------------------- HOME -------------------- */
 const Home = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const images = [images1, images2, images3];
   const AboutImg = [download, download1, download2];
  const products = [
@@ -121,24 +122,28 @@ const Home = () => {
           <Grid size={{ sm: 12, xs: 12, md: 12, lg: 12 }}>
             {/* Navbar */}
             <nav className="navbar">
-              <div className="nav-container">
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <div className="logo">
-                    <img src={logo} alt="logo" />
-                    <span className="brand-name">City Bakery</span>
-                  </div>
-                </div>
+      <div className="nav-container">
+        
+        <div className="logo">
+          <img src={logo} alt="logo" />
+          <span className="brand-name">City Bakery</span>
+        </div>
 
-                <div className="menu">
-                  <a href="#" onClick={handleAbout}>ABOUT US</a>
-                  <a href="#" onClick={handleMenu}>MENU</a>
-                  <a href="#" onClick={handleBestseller}>BEST SELLERS</a>
-                  <a href="#" onClick={handleContact}>CONTACT US</a>
-                </div>
+        <div className="hamburger" onClick={() => setIsOpen(!isOpen)}>
+          ☰
+        </div>
 
-                <div className="contact">📞 +91 8940940435</div>
-              </div>
-            </nav>
+        <div className={`menu ${isOpen ? "active" : ""}`}>
+          <a  onClick={handleAbout}>ABOUT US</a>
+          <a onClick={handleMenu}>MENU</a>
+          <a  onClick={handleBestseller}>BEST SELLERS</a>
+          <a  onClick={handleContact}>CONTACT US</a>
+        </div>
+
+        <div className="contact">📞 +91 8940940435</div>
+
+      </div>
+    </nav>
 
             {/* Hero */}
             <section className="hero">
@@ -258,18 +263,18 @@ const Home = () => {
                 {/* Content */}
                 <div style={{ marginTop: "20px" }}></div>
                 <Grid container justifyContent="center">
-                  <Grid size={{ sm: 6, xs: 6, md: 12, lg: 12 }}>
+                  <Grid size={{ sm: 12, xs: 12, md: 12, lg: 12 }}>
                     <Grid container alignItems="center" spacing={4}>
 
                       {/* TEXT */}
-                      <Grid size={{ sm: 6, xs: 6, md: 6, lg: 6 }}>
+                      <Grid size={{ sm: 12, xs: 12, md: 6, lg: 6 }}>
                         <motion.div
                           key={product.name}
                           initial={{ opacity: 0, y: 40 }}
                           animate={{ opacity: 1, y: 0 }}
                           style={{ alignItems: "center", justifyContent: "center", marginTop: "70px" }}
                         >
-                          <Typography variant="h5" fontWeight={600}>
+                          <Typography variant="h5" fontWeight={600} sx={{alignItems: "center", justifyContent: "center",marginLeft:"130px"}}>
                             {product.name}
                           </Typography>
 
@@ -280,7 +285,7 @@ const Home = () => {
                       </Grid>
 
                       {/* IMAGE */}
-                      <Grid size={{ sm: 6, xs: 6, md: 6, lg: 6 }} textAlign="center">
+                      <Grid size={{ sm: 12, xs: 12, md: 6, lg: 6 }} textAlign="center">
                         <motion.div
                           key={product.img}
                           initial={{ opacity: 0, x: 60 }}
@@ -462,7 +467,6 @@ const Home = () => {
               </Box>
 
             </Box>
-
 
           </Grid>
         </Grid>
