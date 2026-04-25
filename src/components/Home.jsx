@@ -46,7 +46,23 @@ import logo from "../assets/logo.png";
 const Home = () => {
   const images = [images1, images2, images3];
   const AboutImg = [download, download1, download2];
-  const products = [img1,img2,img3];
+ const products = [
+    {
+      name: "Thean Mittai",
+      desc: "Luscious red colour sweet which is juicy inside.",
+      img: img1
+    },
+    {
+      name: "Laddu",
+      desc: "Traditional sweet made with gram flour and ghee.",
+      img: img2
+    },
+    {
+      name: "Jalebi",
+      desc: "Crispy, juicy spiral sweet soaked in sugar syrup.",
+      img: img3
+    }
+  ];
 
   const [selected, setSelected] = useState(0);
   const sectionAbout = useRef(null);
