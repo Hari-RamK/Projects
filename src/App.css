@@ -40,7 +40,7 @@ body {
 
 
 .logo img {
-  width: 70px;     /* control size */
+  width: 90px;     /* control size */
   height: auto;     /* keep aspect ratio */
   object-fit: contain;
 }
