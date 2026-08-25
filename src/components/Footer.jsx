@@ -2,6 +2,15 @@ import { business, logo } from "../data/site";
 
 const Footer = () => (
   <footer className="footer" id="contact">
+    <button
+      type="button"
+      className="footer__to-top"
+      aria-label="Back to top"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    >
+      <ArrowUpIcon />
+    </button>
+
     <div className="container">
       <div className="footer__grid">
         <div className="footer__brand">
@@ -113,6 +122,18 @@ const InstagramIcon = () => (
     <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" strokeWidth="1.7" />
     <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.7" />
     <circle cx="17.1" cy="6.9" r="1.15" fill="currentColor" />
+  </svg>
+);
+
+const ArrowUpIcon = () => (
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+    <path
+      d="M12 19V5m0 0-6 6m6-6 6 6"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 

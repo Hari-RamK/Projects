@@ -326,6 +326,12 @@
 
 <!-- -------------------------------------------------------------- Footer -->
 <footer class="footer" id="contact">
+  <button type="button" class="footer__to-top" id="to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+      <path d="M12 19V5m0 0-6 6m6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
+
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
@@ -418,15 +424,8 @@
   aria-label="Chat with City Bakery on WhatsApp"
 >
   <span class="whatsapp-fab__ring" aria-hidden="true"></span>
-  <span class="whatsapp-fab__icon" aria-hidden="true">{{WHATSAPP_ICON_LG}}</span>
-  <span class="whatsapp-fab__label">WhatsApp Enquiry</span>
+  {{WHATSAPP_ICON_LG}}
 </a>
-
-<button type="button" class="to-top" id="to-top" aria-label="Back to top" tabindex="-1">
-  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
-    <path d="M12 19V5m0 0-6 6m6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-  </svg>
-</button>
 
 <script>
 (function () {
@@ -595,20 +594,12 @@
     start();
   });
 
-  /* ---- Scroll reveals + back to top ---- */
-  var toTop = document.getElementById("to-top");
-  toTop.addEventListener("click", function () {
+  /* ---- Back to top (lives in the footer, always visible there) ---- */
+  document.getElementById("to-top").addEventListener("click", function () {
     window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
   });
 
-  function onScroll() {
-    onScrollHeader();
-    var show = window.scrollY > 600;
-    toTop.classList.toggle("is-visible", show);
-    toTop.tabIndex = show ? 0 : -1;
-  }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  window.addEventListener("scroll", onScrollHeader, { passive: true });
 
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {

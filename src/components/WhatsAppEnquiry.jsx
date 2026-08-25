@@ -1,9 +1,8 @@
 import { business } from "../data/site";
 
 /**
- * Floating WhatsApp enquiry button, fixed to the opposite corner from
- * "back to top" so the two never collide. Opens a chat with City Bakery's
- * number, pre-filled with an enquiry message.
+ * Floating WhatsApp enquiry button, fixed bottom-right. Opens a chat with
+ * City Bakery's number, pre-filled with an enquiry message.
  */
 const WhatsAppEnquiry = () => (
   <a
@@ -14,19 +13,16 @@ const WhatsAppEnquiry = () => (
     aria-label={`Chat with ${business.name} on WhatsApp`}
   >
     <span className="whatsapp-fab__ring" aria-hidden="true" />
-    <span className="whatsapp-fab__icon" aria-hidden="true">
-      <WhatsAppGlyph />
-    </span>
-    <span className="whatsapp-fab__label">WhatsApp Enquiry</span>
+    <WhatsAppGlyph />
   </a>
 );
 
 const WhatsAppGlyph = () => (
-  <svg viewBox="0 0 24 24" width="26" height="26" fill="none">
+  <svg viewBox="0 0 24 24" width="32" height="32" fill="none" aria-hidden="true">
     <path
       d="M6.5 17.4 4 21l3.7-1.5A8.5 8.5 0 1 0 4.4 15Z"
       stroke="currentColor"
-      strokeWidth="1.7"
+      strokeWidth="1.6"
       strokeLinejoin="round"
     />
     <path

@@ -4,7 +4,6 @@ import Footer from "./Footer";
 import Hero from "./Hero";
 import MenuSection from "./MenuSection";
 import Navbar from "./Navbar";
-import ScrollToTop from "./ScrollToTop";
 import WhatsAppEnquiry from "./WhatsAppEnquiry";
 
 const Home = () => (
@@ -24,7 +23,6 @@ const Home = () => (
 
     <Footer />
     <WhatsAppEnquiry />
-    <ScrollToTop />
   </>
 );
 

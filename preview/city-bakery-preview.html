@@ -1052,10 +1052,35 @@ ul {
    -------------------------------------------------------------------------- */
 
 .footer {
+  position: relative;
   padding-top: clamp(3rem, 6vw, 4.5rem);
   padding-bottom: 1.5rem;
   background: linear-gradient(180deg, var(--brand-900), #150a04);
   color: rgba(253, 247, 239, 0.78);
+}
+
+/* Straddles the boundary between the page content and the footer, so it
+   reads as "you've reached the end - here's the way back up". */
+.footer__to-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 2;
+  translate: -50% -50%;
+  display: grid;
+  place-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent-500);
+  color: #fff;
+  box-shadow: var(--shadow-md);
+  transition: background-color 0.2s var(--ease), translate 0.2s var(--ease);
+}
+
+.footer__to-top:hover {
+  background: var(--accent-600);
+  translate: -50% calc(-50% - 3px);
 }
 
 .footer__grid {
@@ -1195,87 +1220,37 @@ ul {
 }
 
 /* --------------------------------------------------------------------------
-   Back to top
+   WhatsApp enquiry - the only fixed corner button now that "back to top"
+   lives in the footer, so it gets the corner to itself.
    -------------------------------------------------------------------------- */
 
-.to-top {
+.whatsapp-fab {
   position: fixed;
-  /* Clear of the iOS home indicator and Android gesture bar. */
   right: max(1rem, env(safe-area-inset-right));
   bottom: max(1rem, env(safe-area-inset-bottom));
   z-index: 80;
   display: grid;
   place-content: center;
-  width: 46px;
-  height: 46px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  background: var(--accent-500);
+  background: #25d366;
   color: #fff;
-  box-shadow: var(--shadow-md);
-  opacity: 0;
-  translate: 0 12px;
-  pointer-events: none;
-  transition: opacity 0.25s var(--ease), translate 0.25s var(--ease),
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease),
     background-color 0.2s var(--ease);
 }
 
-.to-top.is-visible {
-  opacity: 1;
-  translate: 0 0;
-  pointer-events: auto;
-}
-
-.to-top:hover {
-  background: var(--accent-600);
-}
-
-@media (min-width: 900px) {
-  .to-top {
-    right: max(1.75rem, env(safe-area-inset-right));
-    bottom: 1.75rem;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   WhatsApp enquiry - fixed opposite "back to top" so the two never collide.
-   -------------------------------------------------------------------------- */
-
-.whatsapp-fab {
-  position: fixed;
-  left: max(1rem, env(safe-area-inset-left));
-  bottom: max(1rem, env(safe-area-inset-bottom));
-  z-index: 80;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 0.5rem 1.1rem 0.5rem 0.5rem;
-  border-radius: var(--radius-pill);
-  background: #25d366;
-  color: #fff;
-  box-shadow: var(--shadow-md);
-  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
-}
-
 .whatsapp-fab:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  background: #1fb958;
+  transform: translateY(-2px) scale(1.04);
 }
 
-.whatsapp-fab__icon {
-  position: relative;
-  display: grid;
-  place-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.16);
-  flex-shrink: 0;
-}
-
-/* Expanding ring that draws the eye to the button without stealing focus. */
+/* Expanding ring behind the button that draws the eye without stealing focus. */
 .whatsapp-fab__ring {
   position: absolute;
   inset: 0;
+  z-index: -1;
   border-radius: 50%;
   background: #25d366;
   opacity: 0.55;
@@ -1288,31 +1263,14 @@ ul {
     opacity: 0.55;
   }
   100% {
-    scale: 1.9;
+    scale: 1.8;
     opacity: 0;
-  }
-}
-
-.whatsapp-fab__label {
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* Icon-only on the narrowest phones so the pill never crowds the content. */
-@media (max-width: 399px) {
-  .whatsapp-fab {
-    padding: 0.5rem;
-  }
-
-  .whatsapp-fab__label {
-    display: none;
   }
 }
 
 @media (min-width: 900px) {
   .whatsapp-fab {
-    left: max(1.75rem, env(safe-area-inset-left));
+    right: max(1.75rem, env(safe-area-inset-right));
     bottom: 1.75rem;
   }
 }
@@ -1630,6 +1588,12 @@ ul {
 
 <!-- -------------------------------------------------------------- Footer -->
 <footer class="footer" id="contact">
+  <button type="button" class="footer__to-top" id="to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+      <path d="M12 19V5m0 0-6 6m6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
+
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
@@ -1664,7 +1628,7 @@ ul {
               rel="noreferrer"
               aria-label="Message City Bakery on WhatsApp"
             >
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M6.5 17.4 4 21l3.7-1.5A8.5 8.5 0 1 0 4.4 15Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.3c0-.7.5-1.3 1.1-1.3.3 0 .5.1.7.4l.7 1.2c.2.3.2.7 0 1l-.5.7c.4.9 1.2 1.7 2.1 2.1l.7-.5c.3-.2.7-.2 1 0l1.2.7c.3.2.4.4.4.7 0 .6-.6 1.1-1.3 1.1-3.1 0-6.1-3-6.1-6.1Z" fill="currentColor"/></svg>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M6.5 17.4 4 21l3.7-1.5A8.5 8.5 0 1 0 4.4 15Z" stroke="currentColor" stroke-linejoin="round"/><path d="M9 9.3c0-.7.5-1.3 1.1-1.3.3 0 .5.1.7.4l.7 1.2c.2.3.2.7 0 1l-.5.7c.4.9 1.2 1.7 2.1 2.1l.7-.5c.3-.2.7-.2 1 0l1.2.7c.3.2.4.4.4.7 0 .6-.6 1.1-1.3 1.1-3.1 0-6.1-3-6.1-6.1Z" fill="currentColor" stroke-width="1.7"/></svg>
             </a>
           </li>
         </ul>
@@ -1722,15 +1686,8 @@ ul {
   aria-label="Chat with City Bakery on WhatsApp"
 >
   <span class="whatsapp-fab__ring" aria-hidden="true"></span>
-  <span class="whatsapp-fab__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><path d="M6.5 17.4 4 21l3.7-1.5A8.5 8.5 0 1 0 4.4 15Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.3c0-.7.5-1.3 1.1-1.3.3 0 .5.1.7.4l.7 1.2c.2.3.2.7 0 1l-.5.7c.4.9 1.2 1.7 2.1 2.1l.7-.5c.3-.2.7-.2 1 0l1.2.7c.3.2.4.4.4.7 0 .6-.6 1.1-1.3 1.1-3.1 0-6.1-3-6.1-6.1Z" fill="currentColor"/></svg></span>
-  <span class="whatsapp-fab__label">WhatsApp Enquiry</span>
+  <svg viewBox="0 0 24 24" width="32" height="32" fill="none" aria-hidden="true"><path d="M6.5 17.4 4 21l3.7-1.5A8.5 8.5 0 1 0 4.4 15Z" stroke="currentColor" stroke-linejoin="round"/><path d="M9 9.3c0-.7.5-1.3 1.1-1.3.3 0 .5.1.7.4l.7 1.2c.2.3.2.7 0 1l-.5.7c.4.9 1.2 1.7 2.1 2.1l.7-.5c.3-.2.7-.2 1 0l1.2.7c.3.2.4.4.4.7 0 .6-.6 1.1-1.3 1.1-3.1 0-6.1-3-6.1-6.1Z" fill="currentColor" stroke-width="1.6"/></svg>
 </a>
-
-<button type="button" class="to-top" id="to-top" aria-label="Back to top" tabindex="-1">
-  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
-    <path d="M12 19V5m0 0-6 6m6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-  </svg>
-</button>
 
 <script>
 (function () {
@@ -1899,20 +1856,12 @@ ul {
     start();
   });
 
-  /* ---- Scroll reveals + back to top ---- */
-  var toTop = document.getElementById("to-top");
-  toTop.addEventListener("click", function () {
+  /* ---- Back to top (lives in the footer, always visible there) ---- */
+  document.getElementById("to-top").addEventListener("click", function () {
     window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
   });
 
-  function onScroll() {
-    onScrollHeader();
-    var show = window.scrollY > 600;
-    toTop.classList.toggle("is-visible", show);
-    toTop.tabIndex = show ? 0 : -1;
-  }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  window.addEventListener("scroll", onScrollHeader, { passive: true });
 
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
