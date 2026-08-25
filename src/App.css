@@ -856,6 +856,35 @@
   color: var(--gold-300);
 }
 
+.footer__social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.footer__social-link {
+  display: grid;
+  place-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(253, 247, 239, 0.22);
+  color: var(--ink-inverse);
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease),
+    color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.footer__social-link:hover {
+  transform: translateY(-2px);
+  border-color: transparent;
+  color: #fff;
+  background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+}
+
+.footer__social-link--whatsapp:hover {
+  background: #25d366;
+}
+
 .footer__title {
   margin-bottom: 1rem;
   font-family: var(--font-body);
@@ -972,6 +1001,87 @@
 @media (min-width: 900px) {
   .to-top {
     right: max(1.75rem, env(safe-area-inset-right));
+    bottom: 1.75rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   WhatsApp enquiry - fixed opposite "back to top" so the two never collide.
+   -------------------------------------------------------------------------- */
+
+.whatsapp-fab {
+  position: fixed;
+  left: max(1rem, env(safe-area-inset-left));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 1.1rem 0.5rem 0.5rem;
+  border-radius: var(--radius-pill);
+  background: #25d366;
+  color: #fff;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.whatsapp-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.whatsapp-fab__icon {
+  position: relative;
+  display: grid;
+  place-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  flex-shrink: 0;
+}
+
+/* Expanding ring that draws the eye to the button without stealing focus. */
+.whatsapp-fab__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25d366;
+  opacity: 0.55;
+  animation: whatsapp-pulse 2.4s ease-out infinite;
+}
+
+@keyframes whatsapp-pulse {
+  0% {
+    scale: 1;
+    opacity: 0.55;
+  }
+  100% {
+    scale: 1.9;
+    opacity: 0;
+  }
+}
+
+.whatsapp-fab__label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Icon-only on the narrowest phones so the pill never crowds the content. */
+@media (max-width: 399px) {
+  .whatsapp-fab {
+    padding: 0.5rem;
+  }
+
+  .whatsapp-fab__label {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .whatsapp-fab {
+    left: max(1.75rem, env(safe-area-inset-left));
     bottom: 1.75rem;
   }
 }

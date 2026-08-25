@@ -1087,6 +1087,35 @@ ul {
   color: var(--gold-300);
 }
 
+.footer__social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.footer__social-link {
+  display: grid;
+  place-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(253, 247, 239, 0.22);
+  color: var(--ink-inverse);
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease),
+    color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.footer__social-link:hover {
+  transform: translateY(-2px);
+  border-color: transparent;
+  color: #fff;
+  background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+}
+
+.footer__social-link--whatsapp:hover {
+  background: #25d366;
+}
+
 .footer__title {
   margin-bottom: 1rem;
   font-family: var(--font-body);
@@ -1203,6 +1232,87 @@ ul {
 @media (min-width: 900px) {
   .to-top {
     right: max(1.75rem, env(safe-area-inset-right));
+    bottom: 1.75rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   WhatsApp enquiry - fixed opposite "back to top" so the two never collide.
+   -------------------------------------------------------------------------- */
+
+.whatsapp-fab {
+  position: fixed;
+  left: max(1rem, env(safe-area-inset-left));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 1.1rem 0.5rem 0.5rem;
+  border-radius: var(--radius-pill);
+  background: #25d366;
+  color: #fff;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.whatsapp-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.whatsapp-fab__icon {
+  position: relative;
+  display: grid;
+  place-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  flex-shrink: 0;
+}
+
+/* Expanding ring that draws the eye to the button without stealing focus. */
+.whatsapp-fab__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25d366;
+  opacity: 0.55;
+  animation: whatsapp-pulse 2.4s ease-out infinite;
+}
+
+@keyframes whatsapp-pulse {
+  0% {
+    scale: 1;
+    opacity: 0.55;
+  }
+  100% {
+    scale: 1.9;
+    opacity: 0;
+  }
+}
+
+.whatsapp-fab__label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Icon-only on the narrowest phones so the pill never crowds the content. */
+@media (max-width: 399px) {
+  .whatsapp-fab {
+    padding: 0.5rem;
+  }
+
+  .whatsapp-fab__label {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .whatsapp-fab {
+    left: max(1.75rem, env(safe-area-inset-left));
     bottom: 1.75rem;
   }
 }
@@ -1529,6 +1639,35 @@ ul {
           I invite all our guests to experience the same.&rdquo;
         </p>
         <p class="footer__signature">Management</p>
+
+        <ul class="footer__social">
+          <li>
+            <a
+              class="footer__social-link"
+              href="https://www.instagram.com/citybakery_sulur/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="City Bakery on Instagram"
+            >
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.7" />
+                <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7" />
+                <circle cx="17.1" cy="6.9" r="1.15" fill="currentColor" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              class="footer__social-link footer__social-link--whatsapp"
+              href="https://wa.me/918940940435?text=Hi%20City%20Bakery!%20I'd%20like%20to%20enquire%20about%20your%20sweets%20and%20snacks."
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Message City Bakery on WhatsApp"
+            >
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M6.5 17.4 4 21l3.7-1.5A8.5 8.5 0 1 0 4.4 15Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.3c0-.7.5-1.3 1.1-1.3.3 0 .5.1.7.4l.7 1.2c.2.3.2.7 0 1l-.5.7c.4.9 1.2 1.7 2.1 2.1l.7-.5c.3-.2.7-.2 1 0l1.2.7c.3.2.4.4.4.7 0 .6-.6 1.1-1.3 1.1-3.1 0-6.1-3-6.1-6.1Z" fill="currentColor"/></svg>
+            </a>
+          </li>
+        </ul>
       </div>
 
       <div class="footer__col">
@@ -1536,6 +1675,14 @@ ul {
         <ul class="footer__list">
           <li><a class="footer__link" href="tel:+918940940435">+91 89409 40435</a></li>
           <li><a class="footer__link" href="mailto:01citybakerysulur@gmail.com">01citybakerysulur@gmail.com</a></li>
+          <li>
+            <a
+              class="footer__link"
+              href="https://wa.me/918940940435?text=Hi%20City%20Bakery!%20I'd%20like%20to%20enquire%20about%20your%20sweets%20and%20snacks."
+              target="_blank"
+              rel="noreferrer"
+            >WhatsApp us</a>
+          </li>
         </ul>
       </div>
 
@@ -1566,6 +1713,18 @@ ul {
     </div>
   </div>
 </footer>
+
+<a
+  class="whatsapp-fab"
+  href="https://wa.me/918940940435?text=Hi%20City%20Bakery!%20I'd%20like%20to%20enquire%20about%20your%20sweets%20and%20snacks."
+  target="_blank"
+  rel="noreferrer"
+  aria-label="Chat with City Bakery on WhatsApp"
+>
+  <span class="whatsapp-fab__ring" aria-hidden="true"></span>
+  <span class="whatsapp-fab__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><path d="M6.5 17.4 4 21l3.7-1.5A8.5 8.5 0 1 0 4.4 15Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.3c0-.7.5-1.3 1.1-1.3.3 0 .5.1.7.4l.7 1.2c.2.3.2.7 0 1l-.5.7c.4.9 1.2 1.7 2.1 2.1l.7-.5c.3-.2.7-.2 1 0l1.2.7c.3.2.4.4.4.7 0 .6-.6 1.1-1.3 1.1-3.1 0-6.1-3-6.1-6.1Z" fill="currentColor"/></svg></span>
+  <span class="whatsapp-fab__label">WhatsApp Enquiry</span>
+</a>
 
 <button type="button" class="to-top" id="to-top" aria-label="Back to top" tabindex="-1">
   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">

@@ -24,11 +24,17 @@ foreach ($pair in @(
     $html = $html.Replace($pair.token, $css)
 }
 
-# --- Inline the phone icon (used twice) --------------------------------------
+# --- Inline shared icons -----------------------------------------------------
 $phoneIcon = @'
 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M6.6 2.5 9 7l-2 1.6a13 13 0 0 0 6.4 6.4L15 13l4.5 2.4a1.6 1.6 0 0 1 .8 1.7l-.4 2A2 2 0 0 1 17.8 21C9.6 20.4 3.6 14.4 3 6.2A2 2 0 0 1 4.9 4l2-.4a1.6 1.6 0 0 1 1.7.9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
 '@.Trim()
 $html = $html.Replace("{{PHONE_ICON}}", $phoneIcon)
+
+$whatsappPath = 'M6.5 17.4 4 21l3.7-1.5A8.5 8.5 0 1 0 4.4 15Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.3c0-.7.5-1.3 1.1-1.3.3 0 .5.1.7.4l.7 1.2c.2.3.2.7 0 1l-.5.7c.4.9 1.2 1.7 2.1 2.1l.7-.5c.3-.2.7-.2 1 0l1.2.7c.3.2.4.4.4.7 0 .6-.6 1.1-1.3 1.1-3.1 0-6.1-3-6.1-6.1Z" fill="currentColor'
+$whatsappIconSm = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="' + $whatsappPath + '"/></svg>'
+$whatsappIconLg = '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><path d="' + $whatsappPath + '"/></svg>'
+$html = $html.Replace("{{WHATSAPP_ICON}}", $whatsappIconSm)
+$html = $html.Replace("{{WHATSAPP_ICON_LG}}", $whatsappIconLg)
 
 # --- Embed every referenced image as a data URI ------------------------------
 $cache = @{}

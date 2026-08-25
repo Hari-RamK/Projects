@@ -29,6 +29,10 @@ import poster5 from "../assets/optimized/board-light-5.jpg";
 
 export { logo };
 
+const whatsappNumber = "918940940435"; // country code + number, no symbols - required by wa.me
+const whatsappMessage =
+  "Hi City Bakery! I'd like to enquire about your sweets and snacks.";
+
 export const business = {
   name: "City Bakery",
   tagline: "Sweets & Snacks",
@@ -45,6 +49,8 @@ export const business = {
     "https://www.google.com/maps/search/?api=1&query=City+Bakery+Sweet+%26+Snacks+Trichy+Rd+Sulur+Tamil+Nadu+641402",
   hours: "Monday to Sunday · Open 24/7",
   established: 1991,
+  instagramHref: "https://www.instagram.com/citybakery_sulur/",
+  whatsappHref: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
 };
 
 export const navLinks = [
