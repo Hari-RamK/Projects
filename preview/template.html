@@ -1,0 +1,577 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<title>City Bakery Sulur</title>
+
+<style>
+/* ===== src/index.css ===== */
+{{CSS_INDEX}}
+
+/* ===== src/App.css ===== */
+{{CSS_APP}}
+
+/* ===== preview-only =====
+   The React build uses Framer Motion for the reveal animations. This static
+   preview reproduces them with an IntersectionObserver so the scroll behaviour
+   matches what ships. Nothing here exists in the app itself. */
+.reveal {
+  opacity: 0;
+  translate: 0 24px;
+  transition: opacity 0.55s var(--ease), translate 0.55s var(--ease);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  translate: 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+</style>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="header__inner container">
+    <a class="brand" href="#top">
+      <img class="brand__mark" src="{{IMG:logo.png}}" alt="" width="282" height="320" />
+      <span class="brand__text">
+        <span class="brand__name">City Bakery</span>
+        <span class="brand__tagline">Sweets &amp; Snacks</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#about">About Us</a></li>
+        <li><a class="nav__link" href="#menu">Menu</a></li>
+        <li><a class="nav__link" href="#best-sellers">Best Sellers</a></li>
+        <li><a class="nav__link" href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <a class="header__phone" href="tel:+918940940435">
+      {{PHONE_ICON}}
+      <span>+91 89409 40435</span>
+    </a>
+
+    <button
+      type="button"
+      class="hamburger"
+      id="hamburger"
+      aria-expanded="false"
+      aria-controls="mobile-panel"
+      aria-label="Open menu"
+    >
+      <span class="hamburger__bar"></span>
+      <span class="hamburger__bar"></span>
+      <span class="hamburger__bar"></span>
+    </button>
+  </div>
+
+  <div id="mobile-panel" class="mobile-panel" inert>
+    <ul class="mobile-panel__list">
+      <li><a class="mobile-panel__link" href="#about">About Us</a></li>
+      <li><a class="mobile-panel__link" href="#menu">Menu</a></li>
+      <li><a class="mobile-panel__link" href="#best-sellers">Best Sellers</a></li>
+      <li><a class="mobile-panel__link" href="#contact">Contact Us</a></li>
+    </ul>
+    <a class="btn btn--primary mobile-panel__cta" href="tel:+918940940435">
+      {{PHONE_ICON}}
+      <span>+91 89409 40435</span>
+    </a>
+  </div>
+</header>
+
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+
+<main id="main">
+  <!-- ---------------------------------------------------------------- Hero -->
+  <section class="hero" id="top">
+    <div class="hero__inner container">
+      <div class="hero__copy">
+        <p class="eyebrow">Serving Sulur since 1991</p>
+
+        <h1 class="hero__title">
+          Celebrate every occasion with our
+          <span class="hero__title-accent">delightful sweets</span>
+        </h1>
+
+        <p class="hero__lead">
+          Traditional sweets, crisp savouries and fresh bakes &ndash; handmade every
+          single day with time-tested recipes and the finest ingredients.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#menu">Explore the menu</a>
+          <a class="btn btn--ghost" href="tel:+918940940435">Call +91 89409 40435</a>
+        </div>
+
+        <dl class="hero__stats">
+          <div class="hero__stat">
+            <dt class="hero__stat-value">35+</dt>
+            <dd class="hero__stat-label">Years of service</dd>
+          </div>
+          <div class="hero__stat">
+            <dt class="hero__stat-value">100+</dt>
+            <dd class="hero__stat-label">Sweets &amp; snacks</dd>
+          </div>
+          <div class="hero__stat">
+            <dt class="hero__stat-value">24/7</dt>
+            <dd class="hero__stat-label">Always open</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero__media" data-carousel data-delay="5000">
+        <div class="hero__frame">
+          <img class="hero__image is-active" data-slide src="{{IMG:download.jpg}}" alt="A wooden platter piled with assorted Indian sweets" width="736" height="920" />
+          <img class="hero__image" data-slide src="{{IMG:download1.jpg}}" alt="Freshly fried jalebi topped with pistachio" width="736" height="920" aria-hidden="true" />
+          <img class="hero__image" data-slide src="{{IMG:download2.jpg}}" alt="Gulab jamun served in an ornate golden bowl" width="736" height="920" aria-hidden="true" />
+        </div>
+
+        <div class="hero__dots" role="group" aria-label="Choose a photo">
+          <button type="button" class="dot is-active" data-dot aria-current="true" aria-label="Show photo 1 of 3"></button>
+          <button type="button" class="dot" data-dot aria-current="false" aria-label="Show photo 2 of 3"></button>
+          <button type="button" class="dot" data-dot aria-current="false" aria-label="Show photo 3 of 3"></button>
+        </div>
+
+        <div class="hero__badge" aria-hidden="true">
+          <span class="hero__badge-value">Fresh</span>
+          <span class="hero__badge-label">every day</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- Menu -->
+  <section class="section section--tinted" id="menu">
+    <div class="container">
+      <header class="section-heading reveal">
+        <p class="eyebrow">Our Menu</p>
+        <h2 class="section-heading__title">Pick a counter to browse</h2>
+        <p class="section-heading__lead">
+          Four counters, one kitchen. Tap a category to reveal what is on the board today.
+        </p>
+      </header>
+
+      <ul class="category-grid" id="category-grid">
+        <li>
+          <button type="button" class="category" data-board="{{IMG:sweet-menu.jpg}}" data-name="Sweets" aria-pressed="false" aria-expanded="false" aria-controls="menu-board">
+            <span class="category__ring">
+              <img class="category__img" src="{{IMG:sweet.jpg}}" alt="A brass plate of traditional Indian sweets" width="400" height="400" />
+            </span>
+            <span class="category__name">Sweets</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="category" data-board="{{IMG:savouries-menu.jpg}}" data-name="Savouries" aria-pressed="false" aria-expanded="false" aria-controls="menu-board">
+            <span class="category__ring">
+              <img class="category__img" src="{{IMG:savouries.jpg}}" alt="A festive thali of murukku, laddu and mixture" width="400" height="400" />
+            </span>
+            <span class="category__name">Savouries</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="category" data-board="{{IMG:bakery-menu.jpg}}" data-name="Bakery Items" aria-pressed="false" aria-expanded="false" aria-controls="menu-board">
+            <span class="category__ring">
+              <img class="category__img" src="{{IMG:bakery.jpg}}" alt="Assorted freshly baked goods" width="300" height="400" />
+            </span>
+            <span class="category__name">Bakery Items</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="category" data-board="{{IMG:others-menu.jpg}}" data-name="Others" aria-pressed="false" aria-expanded="false" aria-controls="menu-board">
+            <span class="category__ring">
+              <img class="category__img" src="{{IMG:others.jpg}}" alt="Milkshakes in glass jars topped with cream" width="400" height="224" />
+            </span>
+            <span class="category__name">Others</span>
+          </button>
+        </li>
+      </ul>
+
+      <div id="menu-board">
+        <figure class="board" id="board" hidden>
+          <img class="board__img" id="board-img" src="" alt="" width="600" height="986" />
+          <figcaption class="board__caption" id="board-caption"></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- -------------------------------------------------------- Best sellers -->
+  <section class="section section--mint" id="best-sellers">
+    <div class="container">
+      <header class="section-heading reveal">
+        <p class="eyebrow">Best Sellers</p>
+        <h2 class="section-heading__title">What Sulur keeps coming back for</h2>
+        <p class="section-heading__lead">
+          We are known for our unique take on traditional sweets and savouries.
+        </p>
+      </header>
+
+      <ul class="card-grid">
+        <li class="product reveal">
+          <div class="product__media">
+            <img class="product__img" src="{{IMG:download1.jpg}}" alt="A plate of hot jalebi garnished with pistachio" width="736" height="920" />
+            <span class="product__badge">Most loved</span>
+          </div>
+          <div class="product__body">
+            <h3 class="product__name">Jalebi</h3>
+            <p class="product__desc">
+              Crisp golden spirals soaked in saffron syrup and finished with pistachio.
+            </p>
+          </div>
+        </li>
+
+        <li class="product reveal">
+          <div class="product__media">
+            <img class="product__img" src="{{IMG:download2.jpg}}" alt="Gulab jamun in a decorative golden bowl" width="736" height="920" />
+            <span class="product__badge">Festive favourite</span>
+          </div>
+          <div class="product__body">
+            <h3 class="product__name">Gulab Jamun</h3>
+            <p class="product__desc">
+              Soft milk dumplings simmered in warm cardamom and rose syrup.
+            </p>
+          </div>
+        </li>
+
+        <li class="product reveal">
+          <div class="product__media">
+            <img class="product__img" src="{{IMG:download.jpg}}" alt="An assorted box of Indian sweets on a wooden platter" width="736" height="920" />
+            <span class="product__badge">Gift ready</span>
+          </div>
+          <div class="product__body">
+            <h3 class="product__name">Thean Mittai Box</h3>
+            <p class="product__desc">
+              Our signature assorted box &ndash; a little of every house speciality.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------------------- About -->
+  <section class="section about" id="about">
+    <div class="about__inner container">
+      <div class="about__copy reveal">
+        <p class="eyebrow">Our Story</p>
+        <h2 class="about__title">A home of authentic sweets and snacks</h2>
+
+        <p class="about__text">
+          Established in 1991, we have served generations of families with authentic
+          sweets and freshly prepared snacks for over 35 years, building a legacy rooted
+          in taste, trust and tradition. What began as a small neighbourhood bakery has
+          grown into a well-loved destination known for quality, consistency and a deep
+          passion for craftsmanship.
+        </p>
+        <p class="about__text">
+          From the very beginning our mission has been simple &ndash; to create delicious,
+          high-quality sweets and snacks using time-tested recipes and the finest
+          ingredients. Every item we prepare reflects our commitment to preserving
+          traditional flavours while maintaining the highest standards of hygiene and
+          freshness.
+        </p>
+        <p class="about__text">
+          As we continue to grow, we remain committed to the values that started it all.
+          We are honoured to be part of your celebrations and everyday indulgences, and we
+          look forward to serving you for many more years to come.
+        </p>
+
+        <p class="about__signature">Est. 1991 &middot; City Bakery, Sulur</p>
+      </div>
+
+      <div class="about__media reveal" data-carousel data-delay="6000">
+        <div class="carousel">
+          <div class="carousel__frame">
+            <img class="carousel__img is-active" data-slide src="{{IMG:board-light-1.jpg}}" alt="City Bakery rose milk, badam milk and ilaneer payasam" width="735" height="1040" />
+            <img class="carousel__img" data-slide src="{{IMG:board-light-2.jpg}}" alt="City Bakery seasonal specials poster" width="735" height="1040" aria-hidden="true" />
+            <img class="carousel__img" data-slide src="{{IMG:board-light-3.jpg}}" alt="City Bakery signature range poster" width="735" height="1040" aria-hidden="true" />
+            <img class="carousel__img" data-slide src="{{IMG:board-light-5.jpg}}" alt="City Bakery fresh bakes poster" width="735" height="1040" aria-hidden="true" />
+          </div>
+
+          <button type="button" class="carousel__arrow carousel__arrow--prev" data-prev aria-label="Previous poster">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
+              <path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <button type="button" class="carousel__arrow carousel__arrow--next" data-next aria-label="Next poster">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
+              <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="carousel__dots" role="group" aria-label="Choose a poster">
+          <button type="button" class="dot is-active" data-dot aria-current="true" aria-label="Show poster 1 of 4"></button>
+          <button type="button" class="dot" data-dot aria-current="false" aria-label="Show poster 2 of 4"></button>
+          <button type="button" class="dot" data-dot aria-current="false" aria-label="Show poster 3 of 4"></button>
+          <button type="button" class="dot" data-dot aria-current="false" aria-label="Show poster 4 of 4"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- -------------------------------------------------------------- Footer -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img class="footer__logo" src="{{IMG:logo.png}}" alt="City Bakery logo" width="282" height="320" />
+        <p class="footer__quote">
+          &ldquo;It is our commitment to quality that has brought us where we are today.
+          I invite all our guests to experience the same.&rdquo;
+        </p>
+        <p class="footer__signature">Management</p>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__title">Contact</h3>
+        <ul class="footer__list">
+          <li><a class="footer__link" href="tel:+918940940435">+91 89409 40435</a></li>
+          <li><a class="footer__link" href="mailto:01citybakerysulur@gmail.com">01citybakerysulur@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__title">Visit us</h3>
+        <address class="footer__address">
+          <span>City Bakery Sweet &amp; Snacks</span>
+          <span>Trichy Rd, opp. Sulur Bus Stand</span>
+          <span>Sulur, Tamil Nadu 641402</span>
+        </address>
+        <a
+          class="footer__link footer__link--map"
+          href="https://www.google.com/maps/search/?api=1&amp;query=City+Bakery+Sweet+%26+Snacks+Trichy+Rd+Sulur+Tamil+Nadu+641402"
+          target="_blank"
+          rel="noreferrer"
+        >Open in Google Maps</a>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__title">Hours of opening</h3>
+        <p class="footer__hours">Monday to Sunday &middot; Open 24/7</p>
+      </div>
+    </div>
+
+    <div class="footer__bar">
+      <p>&copy; 2026 City Bakery Sulur. All rights reserved.</p>
+      <p>Developed by <span class="footer__author">buhoverse</span></p>
+    </div>
+  </div>
+</footer>
+
+<button type="button" class="to-top" id="to-top" aria-label="Back to top" tabindex="-1">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+    <path d="M12 19V5m0 0-6 6m6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+</button>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- Header shadow ---- */
+  var header = document.querySelector(".header");
+  function onScrollHeader() {
+    header.classList.toggle("is-scrolled", window.scrollY > 8);
+  }
+  onScrollHeader();
+
+  /* ---- Mobile panel ---- */
+  var burger = document.getElementById("hamburger");
+  var panel = document.getElementById("mobile-panel");
+  var scrim = document.getElementById("scrim");
+
+  function setMenu(open) {
+    burger.classList.toggle("is-open", open);
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    panel.classList.toggle("is-open", open);
+    if (open) { panel.removeAttribute("inert"); } else { panel.setAttribute("inert", ""); }
+    scrim.classList.toggle("is-open", open);
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+
+  burger.addEventListener("click", function () {
+    setMenu(!panel.classList.contains("is-open"));
+  });
+  scrim.addEventListener("click", function () { setMenu(false); });
+  panel.querySelectorAll("a").forEach(function (a) {
+    a.addEventListener("click", function () { setMenu(false); });
+  });
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") setMenu(false);
+  });
+  window.matchMedia("(min-width: 900px)").addEventListener("change", function (e) {
+    if (e.matches) setMenu(false);
+  });
+
+  /* ---- Menu category picker: toggles the board open/closed ---- */
+  var AUTO_HIDE_DELAY = 8000; // board closes itself after this long untouched
+  var board = document.getElementById("board");
+  var boardImg = document.getElementById("board-img");
+  var boardCaption = document.getElementById("board-caption");
+  var activeCategoryBtn = null;
+  var isHeld = false; // hovering/focusing the board pauses the auto-hide timer
+  var autoHideTimer = null;
+
+  function setCategoryState(btn, isActive) {
+    btn.classList.toggle("is-active", isActive);
+    btn.setAttribute("aria-pressed", String(isActive));
+    btn.setAttribute("aria-expanded", String(isActive));
+  }
+
+  function clearAutoHide() {
+    if (autoHideTimer) { window.clearTimeout(autoHideTimer); autoHideTimer = null; }
+  }
+
+  function armAutoHide() {
+    clearAutoHide();
+    if (!activeCategoryBtn || isHeld) return;
+    autoHideTimer = window.setTimeout(closeBoard, AUTO_HIDE_DELAY);
+  }
+
+  function closeBoard() {
+    clearAutoHide();
+    if (activeCategoryBtn) setCategoryState(activeCategoryBtn, false);
+    activeCategoryBtn = null;
+    board.hidden = true;
+  }
+
+  function openBoard(btn) {
+    if (activeCategoryBtn) setCategoryState(activeCategoryBtn, false);
+    activeCategoryBtn = btn;
+    setCategoryState(btn, true);
+
+    var name = btn.getAttribute("data-name");
+    boardImg.src = btn.getAttribute("data-board");
+    boardImg.alt = "City Bakery " + name.toLowerCase() + " menu board";
+    boardCaption.textContent = name + " menu board";
+
+    board.hidden = false;
+    board.animate(
+      [{ opacity: 0, transform: "translateY(16px)" }, { opacity: 1, transform: "none" }],
+      { duration: reduced ? 1 : 350, easing: "ease-out" }
+    );
+
+    armAutoHide();
+  }
+
+  document.querySelectorAll(".category").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      if (btn === activeCategoryBtn) {
+        closeBoard();
+      } else {
+        openBoard(btn);
+      }
+    });
+  });
+
+  document.getElementById("menu-board").addEventListener("mouseenter", function () {
+    isHeld = true;
+    clearAutoHide();
+  });
+  document.getElementById("menu-board").addEventListener("mouseleave", function () {
+    isHeld = false;
+    armAutoHide();
+  });
+  document.getElementById("menu-board").addEventListener("focusin", function () {
+    isHeld = true;
+    clearAutoHide();
+  });
+  document.getElementById("menu-board").addEventListener("focusout", function () {
+    isHeld = false;
+    armAutoHide();
+  });
+
+  /* ---- Carousels ---- */
+  document.querySelectorAll("[data-carousel]").forEach(function (root) {
+    var slides = root.querySelectorAll("[data-slide]");
+    var dots = root.querySelectorAll("[data-dot]");
+    var delay = Number(root.getAttribute("data-delay")) || 5000;
+    var index = 0;
+    var timer = null;
+
+    function show(next) {
+      index = (next + slides.length) % slides.length;
+      slides.forEach(function (slide, i) {
+        slide.classList.toggle("is-active", i === index);
+        if (i === index) { slide.removeAttribute("aria-hidden"); }
+        else { slide.setAttribute("aria-hidden", "true"); }
+      });
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle("is-active", i === index);
+        dot.setAttribute("aria-current", String(i === index));
+      });
+    }
+
+    function start() {
+      if (reduced || slides.length < 2) return;
+      stop();
+      timer = window.setInterval(function () { show(index + 1); }, delay);
+    }
+    function stop() {
+      if (timer) { window.clearInterval(timer); timer = null; }
+    }
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () { show(i); start(); });
+    });
+    var prev = root.querySelector("[data-prev]");
+    var next = root.querySelector("[data-next]");
+    if (prev) prev.addEventListener("click", function () { show(index - 1); start(); });
+    if (next) next.addEventListener("click", function () { show(index + 1); start(); });
+
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { stop(); } else { start(); }
+    });
+
+    start();
+  });
+
+  /* ---- Scroll reveals + back to top ---- */
+  var toTop = document.getElementById("to-top");
+  toTop.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+  });
+
+  function onScroll() {
+    onScrollHeader();
+    var show = window.scrollY > 600;
+    toTop.classList.toggle("is-visible", show);
+    toTop.tabIndex = show ? 0 : -1;
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-in");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll(".reveal").forEach(function (el) {
+    observer.observe(el);
+  });
+})();
+</script>

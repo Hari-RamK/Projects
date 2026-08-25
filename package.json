@@ -10,9 +10,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-"deploy": "gh-pages -d build"
- 
-},
+    "deploy": "gh-pages -d dist",
+    "optimize:images": "powershell -ExecutionPolicy Bypass -File scripts/optimize-images.ps1"
+  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
